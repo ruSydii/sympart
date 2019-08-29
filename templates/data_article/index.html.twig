@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello data article!{% endblock %}
+
+{% block body %}
+    {% if articles %}
+        <h1>budayakan baca</h1>
+        <table id="articles" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Article</th>
+                <th>Deskripsi</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>
+                        {{ article.article }}
+                    </td>
+                    <td>
+                        {{ article.deskripsi }}
+                    </td>
+                    <td>
+                        <a href="/article/show/{{ article.id }}" class="btn btn-dark">Show</a>
+                        &nbsp;
+                        <a href="/article/edit/{{ article.id }}" class="btn btn-light">Edit</a>
+                        &nbsp;
+                        <a href="#" class="btn btn-danger delete-article"data-id="{{ article.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles to display</p>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}
